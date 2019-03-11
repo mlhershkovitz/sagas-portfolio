@@ -3,6 +3,7 @@ const pool = require('../modules/pool');
 
 const router = express.Router();
 
+//axios get
 router.get('/api/project', (req, res) => {
     const queryString = `SELECT * FROM "projects"`;
     pool.query(queryString)
@@ -14,6 +15,7 @@ router.get('/api/project', (req, res) => {
       });
   });
 
+  //axios post
   router.post('/api/project', (req, res) => {
     const newProject = req.body;
     const queryString = `INSERT INTO projects ("name", "description", "thumbnail", "website", "github", "date_completed", "tag_id")
@@ -36,6 +38,7 @@ router.get('/api/project', (req, res) => {
       });
   });
 
+  //axios delete
   router.delete('/api/project/:id', (req, res) => {
     const queryString = 'DELETE FROM "projects" WHERE id=$1';
     console.log('query', req.query.id, 'params', req.params.id);
