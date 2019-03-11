@@ -18,6 +18,16 @@ class Admin extends Component {
     }
 }
 
+handleChange = (key) => (event) => {
+  console.log('button clicked')
+  this.setState({
+      newProject: {
+          ...this.state.newProject,
+          [key]: event.target.value,
+      }
+  });
+}
+
 componentDidMount() {
     console.log('admin loaded');
     this.getProjects();
@@ -28,10 +38,15 @@ getProjects() {
 }
 
 
+
   
-render() {  
+render() {
+  console.log(this.props.reduxState.projects);
+    
   return (
       <div>
+        <form onSubmit = {() => (this.state.newProject)}>
+
         <input placeholder="name"
         type="text"
         value={this.state.newProject.name}
@@ -54,9 +69,9 @@ render() {
         <input placeholder="thumbnail" type="imgUrl"
         value={this.state.newProject.thumbnail}
         onChange={this.handleChange('thumbnail')}/>
-
         
-        
+        <button type='submit' >Add Project</button>
+        </form>
       </div>
       );
     }
