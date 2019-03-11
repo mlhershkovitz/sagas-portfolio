@@ -58,7 +58,6 @@ handleClick= (value) => (event) => {
 }
 
 render() {
-  console.log(this.props.reduxState.projects);
     
   return (
       <div>
