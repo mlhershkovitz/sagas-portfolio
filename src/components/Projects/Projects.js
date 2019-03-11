@@ -7,8 +7,12 @@ import Linkify from 'react-linkify';
 
 class ProjectList extends Component {
 
-    componentDidMount() {
-      this.props.dispatch({ type: 'FETCH_PROJECTS' });
+  componentDidMount() {
+      this.getProjects();
+    }//end component did mount
+
+  getProjects() {
+      this.props.dispatch({ type: 'GET_PROJECT' })
     }
   
     render() {

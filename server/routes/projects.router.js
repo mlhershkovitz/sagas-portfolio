@@ -3,7 +3,7 @@ const pool = require('../modules/pool');
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/project', (req, res) => {
     const queryString = `SELECT * FROM "projects"`;
     pool.query(queryString)
       .then((result) => { 
@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
       });
   });
 
-  router.post('/', (req, res) => {
+  router.post('/api/project', (req, res) => {
     const newProject = req.body;
     const queryString = `INSERT INTO "projects" ("name", "description", "thumbnail", "website", "github", "date_completed", "tag_id")
                         VALUES ($1, $2, $3, $4, $5, $6, $7)`;
@@ -35,3 +35,5 @@ router.get('/', (req, res) => {
         res.sendStatus(500);
       });
   });
+
+  module.exports = router;

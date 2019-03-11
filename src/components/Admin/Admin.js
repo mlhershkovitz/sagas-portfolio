@@ -5,10 +5,25 @@ import { connect } from 'react-redux';
 
 class Admin extends Component {
 
-    componentDidMount() {
-      console.log('admin loaded');
-      
+  state = {
+    newProject: {
+        id: 4,
+        name: '',
+        description: '',
+        date: '',
+        gitHub: '',
+        website: '',
+        tag_id: '',
+        thumbnail: ''
     }
+}
+
+componentDidMount() {
+    console.log('admin loaded');
+    this.getProjects();
+}//end component did mount
+
+
   
     render() {
       
