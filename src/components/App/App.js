@@ -9,9 +9,6 @@ import Admin from '../Admin/Admin';
 
 
 class App extends Component {
-  // Renders the entire app on the DOM
-
-
   
   render() {
     return (
@@ -19,6 +16,7 @@ class App extends Component {
       <div className="App">
       <header>
         <h1>Portfolio</h1>
+        <p>Madison Hershkovitz</p>
           <ul>
               <li><Link to="/">Projects</Link></li>
               <li><Link to="/admin">Admin</Link></li>
