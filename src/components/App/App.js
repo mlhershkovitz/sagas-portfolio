@@ -20,10 +20,13 @@ class App extends Component {
     return (
     <Router>
       <div className="App">
+      <header>
+        <h1>Portfolio</h1>
           <ul>
               <li><Link to="/">Projects</Link></li>
               <li><Link to="/admin">Admin</Link></li>
           </ul>
+        </header>
         <Route exact path="/" component={Projects} />
         <Route path="/admin" component={Admin} />
         </div>
