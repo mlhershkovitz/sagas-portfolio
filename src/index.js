@@ -14,7 +14,10 @@ import axios from 'axios'
 
 // Create the rootSaga generator function
 function* rootSaga() {
-
+    //connecting axios get
+    yield takeEvery('FETCH_PROJECT', getProject);
+    //connecting axios post
+    yield takeEvery('ADD_PROJECT', postProject);
 }
 
 // Create sagaMiddleware
