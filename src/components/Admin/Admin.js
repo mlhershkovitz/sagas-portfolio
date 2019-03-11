@@ -34,12 +34,12 @@ componentDidMount() {
 }//end component did mount
 
 getProjects() {
-  this.props.dispatch({ type: 'GET_PROJECT' })
+  this.props.dispatch({ type: 'FETCH_PROJECT' })
 }
 
 handleSubmit = (event) => {
   event.preventDefault();
-  this.props.dispatch({ type: 'POST_PROJECT', payload: this.state.newProject })
+  this.props.dispatch({ type: 'ADD_PROJECT', payload: this.state.newProject })
     this.setState({
         newProject: {
           id: this.state.newProject.id + 1,
@@ -53,13 +53,18 @@ handleSubmit = (event) => {
       }
   });
 }
- 
+
+handleClick= (value) => (event) => {
+  console.log(event.target.value)
+  this.props.dispatch({type: 'DELETE_PROJECT', payload: event.target.value})
+}
+
 render() {
   console.log(this.props.reduxState.projects);
     
   return (
       <div>
-        <form onSubmit = {() => (this.state.handleSubmit)}>
+        <form onSubmit = {this.state.handleSubmit}>
 
         <input placeholder="name"
         type="text"
@@ -68,7 +73,7 @@ render() {
         <input placeholder="description"
         type="text" 
         value={this.state.newProject.description}
-        onChange={this.handleChange('date')}/>
+        onChange={this.handleChange('description')}/>
         <input placeholder="gitHub link" 
         type="text" 
         value={this.state.newProject.gitHub}
@@ -101,7 +106,7 @@ render() {
             <tr>
               <td>{projects.name}</td>
               <td>{projects.description}</td>
-              <td><button onClick="handleClick">Delete</button></td>
+              <td><button value={projects.id} onClick={this.handleClick(this.value)}>Delete</button></td>
             </tr>
           ))}
           </tbody>

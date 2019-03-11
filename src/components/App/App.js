@@ -10,9 +10,6 @@ import Admin from '../Admin/Admin';
 
 class App extends Component {
   // Renders the entire app on the DOM
-  state = {
-    githubUrl: ''
-  }
 
 
   

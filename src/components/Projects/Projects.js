@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 
 import Linkify from 'react-linkify';
 
+const mapReduxStateToProps = reduxState => ({
+  reduxState
+});
 
 
 class ProjectList extends Component {
@@ -12,15 +15,17 @@ class ProjectList extends Component {
     }//end component did mount
 
   getProjects() {
-      this.props.dispatch({ type: 'GET_PROJECT' })
+      this.props.dispatch({ type: 'FETCH_PROJECT' })
     }
   
-    render() {
+  render() {
+      console.log(this.props.reduxState.projects);
+      
       
       return (
         <div>
            {this.props.reduxState.projects.map((project) => (
-            <div className="projects">
+            <div>
               <h3>{project.name}</h3>
               <br/>
               <p>{project.tag_id}</p>
@@ -37,9 +42,6 @@ class ProjectList extends Component {
     }
   }
   
-  const mapReduxStateToProps = reduxState => ({
-    reduxState
-  });
   
   export default connect(mapReduxStateToProps)(ProjectList);
   

@@ -3,7 +3,7 @@ const pool = require('../modules/pool');
 
 const router = express.Router();
 
-router.get('/project', (req, res) => {
+router.get('/api/project', (req, res) => {
     const queryString = `SELECT * FROM "projects"`;
     pool.query(queryString)
       .then((result) => { 
@@ -32,6 +32,18 @@ router.get('/project', (req, res) => {
         res.sendStatus(201);
     }).catch((err) => {
         console.log('Error completing project POST', err);
+        res.sendStatus(500);
+      });
+  });
+
+  router.delete('/api/project/:id', (req, res) => {
+    const queryString = 'DELETE FROM "project" WHERE id=$1';
+    console.log('query', req.query.id, 'params', req.params.id);
+    pool.query(queryString, [Number(req.params.id)])
+      .then(() => {
+        res.sendStatus(200);
+      }).catch((error) => {
+        console.log('Error completing DELETE route', error);
         res.sendStatus(500);
       });
   });

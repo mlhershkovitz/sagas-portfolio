@@ -18,13 +18,24 @@ function* rootSaga() {
     yield takeEvery('FETCH_PROJECT', getProject);
     //connecting axios post
     yield takeEvery('ADD_PROJECT', postProject);
+    //connecting axios delete
+    yield takeEvery('DELETE_PROJECT', deleteProject);
 }//end root saga
+
+function* deleteProject (action){
+    try{
+        yield axios.delete(`api/project/${action.payload}`)
+        yield put({type: 'FETCH_PROJECT'})
+    } catch(error){
+    console.log('error in DELETE request ', error)
+        }
+    }
 
 function* getProject(action) {
     console.log('hit first saga Get project');
     try {
       const fetchProject = yield axios.get('/api/project');
-      yield put({type: 'SET_PROJECT', payload: fetchProject.data})
+      yield put({type: 'SET_PROJECTS', payload: fetchProject.data})
     }
     catch (err){
       console.log('in get project', err)
