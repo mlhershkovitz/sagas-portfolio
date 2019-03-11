@@ -17,7 +17,7 @@ function* rootSaga() {
     //connecting axios get
     yield takeEvery('FETCH_PROJECT', getProject);
     //connecting axios post
-   // yield takeEvery('ADD_PROJECT', postProject);
+    yield takeEvery('ADD_PROJECT', postProject);
 }//end root saga
 
 function* getProject(action) {
@@ -29,7 +29,18 @@ function* getProject(action) {
     catch (err){
       console.log('in get project', err)
     }
-  }// end get project
+}// end get project
+
+//post new project
+function* postProject (action){
+    try {
+      yield axios.post('/api/project', action.payload);
+      yield put({ type: 'FETCH_PROJECT' });
+    } catch (error) {
+      console.log('Error making POST request');
+      alert('there was a problem');
+   }
+}//end post project
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
