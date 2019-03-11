@@ -32,7 +32,7 @@ class ProjectList extends Component {
               <p>{project.description} </p>
                 <Linkify> GitHub: {project.github}</Linkify>
                 <Linkify> Website: {project.website}</Linkify>
-              <p>{project.thumbnail}</p>
+              <p><img src={project.thumbnail} /></p>
               <br/>
               <p>{project.date_completed}</p>
             </div>

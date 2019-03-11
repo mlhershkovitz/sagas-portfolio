@@ -7,7 +7,6 @@ class Admin extends Component {
 
   state = {
     newProject: {
-        id: 3,
         name: '',
         description: '',
         gitHub: '',
@@ -19,7 +18,7 @@ class Admin extends Component {
 }
 
 handleChange = (key) => (event) => {
-  console.log('button clicked')
+
   this.setState({
       newProject: {
           ...this.state.newProject,
@@ -42,7 +41,6 @@ handleSubmit = (event) => {
   this.props.dispatch({ type: 'ADD_PROJECT', payload: this.state.newProject })
     this.setState({
         newProject: {
-          id: this.state.newProject.id + 1,
           name: '',
           description: '',
           gitHub: '',
@@ -64,7 +62,7 @@ render() {
     
   return (
       <div>
-        <form onSubmit = {this.state.handleSubmit}>
+        <form onSubmit = {this.handleSubmit}>
 
         <input placeholder="name"
         type="text"
@@ -91,7 +89,7 @@ render() {
         <input placeholder="tag id" type="number"
         value={this.state.newProject.tag_id}
         onChange={this.handleChange('tag_id')}/>
-        
+
         <button type='submit' >Add Project</button>
         </form>
         
