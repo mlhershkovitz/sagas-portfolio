@@ -7,12 +7,12 @@ class Admin extends Component {
 
   state = {
     newProject: {
-        id: 4,
+        id: 3,
         name: '',
         description: '',
-        date: '',
         gitHub: '',
         website: '',
+        date: '',
         tag_id: '',
         thumbnail: ''
     }
@@ -37,15 +37,29 @@ getProjects() {
   this.props.dispatch({ type: 'GET_PROJECT' })
 }
 
-
-
-  
+handleSubmit = (event) => {
+  event.preventDefault();
+  this.props.dispatch({ type: 'POST_PROJECT', payload: this.state.newProject })
+    this.setState({
+        newProject: {
+          id: this.state.newProject.id + 1,
+          name: '',
+          description: '',
+          gitHub: '',
+          website: '',
+          date: '',
+          tag_id: '',
+          thumbnail: ''
+      }
+  });
+}
+ 
 render() {
   console.log(this.props.reduxState.projects);
     
   return (
       <div>
-        <form onSubmit = {() => (this.state.newProject)}>
+        <form onSubmit = {() => (this.state.handleSubmit)}>
 
         <input placeholder="name"
         type="text"
@@ -72,6 +86,27 @@ render() {
         
         <button type='submit' >Add Project</button>
         </form>
+        
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          
+          <tbody>
+          {this.props.reduxState.projects.map((projects) => (
+            <tr>
+              <td>{projects.name}</td>
+              <td>{projects.description}</td>
+              <td><button onClick="handleClick">Delete</button></td>
+            </tr>
+          ))}
+          </tbody>
+        </table>
+
       </div>
       );
     }
