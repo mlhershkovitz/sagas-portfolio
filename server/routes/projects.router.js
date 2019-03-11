@@ -37,9 +37,9 @@ router.get('/api/project', (req, res) => {
   });
 
   router.delete('/api/project/:id', (req, res) => {
-    const queryString = 'DELETE FROM "project" WHERE id=$1';
+    const queryString = 'DELETE FROM "projects" WHERE id=$1';
     console.log('query', req.query.id, 'params', req.params.id);
-    pool.query(queryString, [Number(req.params.id)])
+    pool.query(queryString, [req.params.id])
       .then(() => {
         res.sendStatus(200);
       }).catch((error) => {
