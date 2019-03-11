@@ -88,6 +88,9 @@ render() {
         <input placeholder="thumbnail" type="imgUrl"
         value={this.state.newProject.thumbnail}
         onChange={this.handleChange('thumbnail')}/>
+        <input placeholder="tag id" type="number"
+        value={this.state.newProject.tag_id}
+        onChange={this.handleChange('tag_id')}/>
         
         <button type='submit' >Add Project</button>
         </form>
